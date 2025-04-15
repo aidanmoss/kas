@@ -31,6 +31,11 @@ chown_managed_dirs()
 			chown "$1":"$2" "$DIR"
 		fi
 	done
+
+	# Change owner of the .ssh directory if it exists.
+	if [ -d /builder/.ssh ]; then
+		chown -R "$USER_ID":"$GROUP_ID" /builder/.ssh
+	fi
 }
 
 restore_managed_dirs_owner()
@@ -61,7 +66,6 @@ else
 	# copy host SSH config into home of builder
 	if [ -d /var/kas/userdata/.ssh ]; then
 		cp -a /var/kas/userdata/.ssh /builder/
-		chown -R "$USER_ID":"$GROUP_ID" /builder/.ssh
 	fi
 
 	GOSU="gosu builder"
