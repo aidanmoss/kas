@@ -34,7 +34,7 @@ chown_managed_dirs()
 
 	# Change owner of the .ssh directory if it exists.
 	if [ -d /builder/.ssh ]; then
-		chown -R "$USER_ID":"$GROUP_ID" /builder/.ssh
+		chown -R "$1":"$2" /builder/.ssh
 	fi
 }
 
