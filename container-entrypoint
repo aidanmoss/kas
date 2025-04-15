@@ -26,16 +26,13 @@
 
 chown_managed_dirs()
 {
-	for DIR in /build /work /sstate /downloads /repo-ref; do
+	for DIR in /build /work /sstate /downloads /repo-ref /builder/.ssh; do
 		if [ -d "$DIR" ]; then
 			chown "$1":"$2" "$DIR"
 		fi
 	done
 
-	# Change owner of the .ssh directory if it exists.
-	if [ -d /builder/.ssh ]; then
-		chown -R "$1":"$2" /builder/.ssh
-	fi
+
 }
 
 restore_managed_dirs_owner()
