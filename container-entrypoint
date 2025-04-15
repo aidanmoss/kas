@@ -61,6 +61,7 @@ else
 	# copy host SSH config into home of builder
 	if [ -d /var/kas/userdata/.ssh ]; then
 		cp -a /var/kas/userdata/.ssh /builder/
+		chown -R "$USER_ID":"$GROUP_ID" /builder/.ssh
 	fi
 
 	GOSU="gosu builder"
