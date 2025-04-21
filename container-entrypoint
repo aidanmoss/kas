@@ -112,7 +112,7 @@ if [ -n "$USER_ID" ] && [ "$USER_ID" -ne 0 ] && \
 	sudo git config --system safe.directory /repo
 	TEMP_DIR=$(mkdir /var/kas/kas_userdata.rootless)
 	# Copy the userdata directory to a temporary location
-	cp -a /var/kas/userdata "$TEMP_DIR"
+	cp -R /var/kas/userdata/* "$TEMP_DIR"
 	export_managed_dirs "$TEMP_DIR"
 	chown_managed_dirs "$USER_ID" "$GROUP_ID"
 fi
